@@ -1,7 +1,18 @@
 const startingCoords = [1, 1];
 let currentLocation = startingCoords;
 let previousLocation = startingCoords;
+const pavementArray = [
+    "./assets/flooring/pavement1.jpeg",
+    "./assets/flooring/pavement2.jpeg",
+    "./assets/flooring/pavement3.jpeg",
+    "./assets/flooring/pavement4.jpeg",
+    "./assets/flooring/pavement5.jpeg"
+];
 
+function choosePavement() {
+    let randomNum = Math.floor(Math.random() * pavementArray.length);
+    return (pavementArray[randomNum])
+}
 function gamePlay() {
     // Create a 25 by 25 matrix
     let matrix = [];
@@ -12,14 +23,14 @@ function gamePlay() {
     // Create an HTML table
     let table = document.createElement("table");
     table.setAttribute("id", "myGameBoard");
-
+    table.style.backgroundImage = "url(./assets/flooring/pavement3.jpeg)"
     // Fill the table with the values from the matrix
     for (let i = 1; i <= 25; i++) {
         let row = document.createElement("tr");
         for (let j = 1; j <= 25; j++) {
             let cell = document.createElement("td");
             cell.setAttribute("id", `cell-${i}-${j}`);
-            cell.innerHTML = "x";
+
 
             row.appendChild(cell);
         }
