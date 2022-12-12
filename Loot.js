@@ -15,7 +15,6 @@ function chooseLoot() {
 function lootGenerator(loots) {
     for (let cell of loots){
         let passive = document.getElementById(cell);
-        passive.innerHTML = "?";
         passive.setAttribute("class", cell+"-loot");
         passive.style.backgroundImage = "url(" + '"' + chooseLoot() + '"' + ")";
         passive.style.backgroundSize= "contain";
