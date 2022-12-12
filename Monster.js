@@ -17,10 +17,16 @@ function monsterGenerator(monsters) {
     for (let cell of monsters){
         let hostile = document.getElementById(cell);
         hostile.setAttribute("class", cell+"-monster");
-        hostile.style.backgroundImage = "url(" + '"' + chooseMonster() + '"' + ")";
+        // hostile.style.backgroundImage = "url(" + '"' + chooseMonster() + '"' + ")";
+        hostile.style.backgroundImage = "url(" + '"' + "./assets/flooring/Qmark.png" + '"' + ")";
+
         hostile.style.backgroundSize= "contain";
         hostile.style.backgroundRepeat= "no-repeat";
         hostile.style.backgroundPosition= "50% 50%";
     }
 
+}
+
+function monsterData(){
+    console.log("monster")
 }

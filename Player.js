@@ -8,4 +8,5 @@ function playerInteraction(previous, current) {
     window.sessionStorage.setItem('previous-y', previous[1]);
     window.sessionStorage.setItem('current-x', current[0]);
     window.sessionStorage.setItem('current-y', current[1]);
+
 }
