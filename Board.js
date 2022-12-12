@@ -14,7 +14,6 @@ function choosePavement() {
     return (pavementArray[randomNum])
 }
 function gamePlay() {
-    // window.sessionStorage.removeItem("tableData")
     if (window.sessionStorage.getItem("tableData")) {
         loadBoard()
     }
@@ -23,7 +22,7 @@ function gamePlay() {
         // Create an HTML table
         let table = document.createElement("table");
         table.setAttribute("id", "myGameBoard");
-        table.style.backgroundImage = "url(./assets/flooring/pavement3.jpeg)"
+        table.style.backgroundImage = "url("+'"'+choosePavement()+'"'+")"
         // Fill the table with the values from the matrix
         for (let i = 1; i <= 25; i++) {
             let row = document.createElement("tr");
@@ -58,42 +57,36 @@ function gamePlay() {
         lootGenerator(loots)
         let startingCell = document.getElementById(`cell-${startingCoords[0]}-${startingCoords[1]}`);
         startingCell.style.backgroundColor = "yellow";
+
+        window.sessionStorage.setItem('health', "100");
+        window.sessionStorage.setItem('attack', "10");
+        window.sessionStorage.setItem('defence', "10");
+        document.getElementById("player-health").innerText = window.sessionStorage.getItem('health');
+        document.getElementById("player-attack").innerText = window.sessionStorage.getItem('attack');
+        document.getElementById("player-defence").innerText = window.sessionStorage.getItem('defence');
+        window.sessionStorage.setItem('GameLog', JSON.stringify([]));
         saveBoard()
     }
 }
 
 function generateRandom(min = 1, max = 26) {
-
-    // find diff
     let difference = max - min;
-
-    // generate random number
     let rand = Math.random();
-
-    // multiply with difference
     rand = Math.floor( rand * difference);
-
-    // add with min value
     rand = rand + min;
-
     return rand;
 }
 
 function saveBoard() {
     const table = document.getElementById('myGameBoard');
-// Create an array to hold the table data
     const tableData = [];
 
-// Loop through the rows of the table
     for (let i = 0; i < table.rows.length; i++) {
         let row = table.rows[i];
         let rowData = [];
-        // Loop through the cells of the row
         for (let j = 0; j < row.cells.length; j++) {
             let cell = row.cells[j];
             const cellData = [];
-            // Add the cell data to the row object, using the
-            // cell's id or class attribute as the key
             try {
                 cellData.push({
                     id: cell.id,
@@ -114,9 +107,9 @@ function saveBoard() {
     }
 // Save the table data to local storage
     window.sessionStorage.setItem('tableData', JSON.stringify(tableData));
+
     window.sessionStorage.setItem('previous-x', previousLocation[0]);
     window.sessionStorage.setItem('previous-y', previousLocation[1]);
-
     window.sessionStorage.setItem('current-x', currentLocation[0]);
     window.sessionStorage.setItem('current-y', currentLocation[1]);
 }
@@ -124,7 +117,8 @@ function saveBoard() {
 function loadBoard() {
     previousLocation = [Number(window.sessionStorage.getItem("previous-x")), Number(window.sessionStorage.getItem("previous-y"))]
     currentLocation = [Number(window.sessionStorage.getItem("current-x")), Number(window.sessionStorage.getItem("current-y"))]
-
+    const gameLog = document.getElementsByClassName("game-log");
+    const storageGameLog = JSON.parse(window.sessionStorage.getItem("GameLog"));
     const retrieve = window.sessionStorage.getItem('tableData');
     const tableData = JSON.parse(retrieve);
     // Create an HTML table
@@ -154,9 +148,21 @@ function loadBoard() {
     }
     document.body.appendChild(table);
     playerInteraction(previousLocation, currentLocation)
+    document.getElementById("player-health").innerText = window.sessionStorage.getItem('health');
+    document.getElementById("player-attack").innerText = window.sessionStorage.getItem('attack');
+    document.getElementById("player-defence").innerText = window.sessionStorage.getItem('defence');
+
+    let lootUpdate;
+    for (let i of storageGameLog) {
+        lootUpdate = document.createElement("p");
+        lootUpdate.innerHTML = i
+        lootUpdate.style.fontSize = "15px";
+        gameLog[0].appendChild(lootUpdate)
+    }
 }
 
 document.addEventListener("keydown", (event) => {
+    let cell;
     switch (event.key) {
         case "ArrowUp":
             previousLocation = structuredClone(currentLocation);
@@ -164,8 +170,14 @@ document.addEventListener("keydown", (event) => {
             } else {
                 currentLocation[0] = currentLocation[0] - 1;
             }
-
             playerInteraction(previousLocation, currentLocation);
+            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
+                monsterData(previousLocation, currentLocation)
+            }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
+                lootData(previousLocation, currentLocation)
+            }
             break;
         case "ArrowDown":
             previousLocation = structuredClone(currentLocation);
@@ -173,8 +185,15 @@ document.addEventListener("keydown", (event) => {
             } else {
                 currentLocation[0] = currentLocation[0] + 1;
             }
-
             playerInteraction(previousLocation, currentLocation);
+            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
+                monsterData(previousLocation, currentLocation)
+            }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
+                lootData(previousLocation, currentLocation)
+            }
+
             break;
         case "ArrowLeft":
             previousLocation = structuredClone(currentLocation);
@@ -182,8 +201,15 @@ document.addEventListener("keydown", (event) => {
             } else {
                 currentLocation[1] = currentLocation[1] - 1;
             }
-
             playerInteraction(previousLocation, currentLocation);
+            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
+                monsterData(previousLocation, currentLocation)
+            }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
+                lootData(previousLocation, currentLocation)
+            }
+
             break;
         case "ArrowRight":
             previousLocation = structuredClone(currentLocation);
@@ -192,6 +218,14 @@ document.addEventListener("keydown", (event) => {
                 currentLocation[1] = currentLocation[1] + 1;
             }
             playerInteraction(previousLocation, currentLocation);
+            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
+                monsterData(previousLocation, currentLocation)
+            }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
+                lootData(previousLocation, currentLocation)
+            }
+
             break;
     }
 });
