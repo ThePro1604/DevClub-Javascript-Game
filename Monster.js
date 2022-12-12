@@ -17,13 +17,10 @@ function monsterGenerator(monsters) {
     for (let cell of monsters){
         let hostile = document.getElementById(cell);
         hostile.setAttribute("class", cell+"-monster");
-
-        hostile.innerHTML = "?";
         hostile.style.backgroundImage = "url(" + '"' + chooseMonster() + '"' + ")";
         hostile.style.backgroundSize= "contain";
         hostile.style.backgroundRepeat= "no-repeat";
         hostile.style.backgroundPosition= "50% 50%";
-
     }
 
 }
