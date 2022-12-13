@@ -8,9 +8,11 @@
     <script src="Monster.js"></script>
     <script src="Player.js"></script>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="components/dialog/modalbox.css">
+    <script src="components/dialog/modalbox.js"></script>
 
 </head>
-<body onload="gamePlay([1, 1])">
+<body onload="popupModal()">
     <div class="info">
         <h1>Welcome To The Wild</h1>
         <table class="player-stats">
@@ -27,6 +29,39 @@
         </table>
         <h2>GameLog</h2>
         <div class="game-log"></div>
+    </div>
+    <div class="container" id="container">
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Welcome Player!</h2>
+                </div>
+                <div class="characters">
+                    <h3>Choose Your Avatar!</h3>
+                    <table class="character-table">
+                        <tr>
+                            <td><img alt="avatar1" onclick="chooseAvatar(`avatar1`)" id="avatar1" src="assets/avatars/avatar1.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar2" onclick="chooseAvatar(`avatar2`)" id="avatar2" src="assets/avatars/avatar2.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar3" onclick="chooseAvatar(`avatar3`)" id="avatar3" src="assets/avatars/avatar3.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar4" onclick="chooseAvatar(`avatar4`)" id="avatar4" src="assets/avatars/avatar4.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar5" onclick="chooseAvatar(`avatar5`)" id="avatar5" src="assets/avatars/avatar5.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar6" onclick="chooseAvatar(`avatar6`)" id="avatar6" src="assets/avatars/avatar6.jpg" width="100px" height="100px"/></td>
+                        </tr>
+                        <tr>
+                            <td><img alt="avatar7" onclick="chooseAvatar(`avatar7`)" id="avatar7" src="assets/avatars/avatar7.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar8" onclick="chooseAvatar(`avatar8`)" id="avatar8" src="assets/avatars/avatar8.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar9" onclick="chooseAvatar(`avatar9`)" id="avatar9" src="assets/avatars/avatar9.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar10" onclick="chooseAvatar(`avatar10`)" id="avatar10" src="assets/avatars/avatar10.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar11" onclick="chooseAvatar(`avatar11`)" id="avatar11" src="assets/avatars/avatar11.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" src="assets/avatars/avatar12.jpg" width="100px" height="100px"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <p id="modalError"></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

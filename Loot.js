@@ -47,6 +47,7 @@ function lootData(previous, current){
     const gameDataForStorage = JSON.parse(window.sessionStorage.getItem("GameLog"));
 
     if (lootType === "health"){
+        currentCell.setAttribute("class", "used-loot-health");
         currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion3.png" + '"' + ")";
         let health = Number(window.sessionStorage.getItem('health'));
         let randomNum = Math.floor(Math.random() * 14);
@@ -61,6 +62,7 @@ function lootData(previous, current){
 
     if (lootType === "attack"){
         currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion5.png" + '"' + ")";
+        currentCell.setAttribute("class", "used-loot-attack");
         let attack = Number(window.sessionStorage.getItem('attack'));
         let randomNum = Math.floor(Math.random() * 4);
         randomNum = randomNum + 1;
@@ -74,6 +76,7 @@ function lootData(previous, current){
 
     if (lootType === "defence"){
         currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion2.png" + '"' + ")";
+        currentCell.setAttribute("class", "used-loot-defence");
         let defence = Number(window.sessionStorage.getItem('defence'));
         let randomNum = Math.floor(Math.random() * 4);
         randomNum = randomNum + 1;
@@ -91,4 +94,26 @@ function lootData(previous, current){
     console.log(gameDataForStorage)
 
     saveBoard()
+}
+function recoverLoot(previous) {
+    console.log(previous)
+    let previousCell = document.getElementById(`cell-${previous[0]}-${previous[1]}`);
+    if((previousCell.className).includes("health")){
+        previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion3.png" + '"' + ")";
+        previousCell.style.backgroundSize= "contain";
+        previousCell.style.backgroundRepeat= "no-repeat";
+        previousCell.style.backgroundPosition= "50% 50%";
+    }
+    if((previousCell.className).includes("attack")){
+        previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion5.png" + '"' + ")";
+        previousCell.style.backgroundSize= "contain";
+        previousCell.style.backgroundRepeat= "no-repeat";
+        previousCell.style.backgroundPosition= "50% 50%";
+    }
+    if((previousCell.className).includes("defence")){
+        previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion2.png" + '"' + ")";
+        previousCell.style.backgroundSize= "contain";
+        previousCell.style.backgroundRepeat= "no-repeat";
+        previousCell.style.backgroundPosition= "50% 50%";
+    }
 }
