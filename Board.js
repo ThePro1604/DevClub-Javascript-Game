@@ -18,7 +18,7 @@ function gamePlay() {
         loadBoard()
     }
     else if (!window.sessionStorage.getItem("tableData")) {
-
+        // popupModal()
         // Create an HTML table
         let table = document.createElement("table");
         table.setAttribute("id", "myGameBoard");
@@ -55,8 +55,6 @@ function gamePlay() {
         // Append the table to the document
         monsterGenerator(monsters)
         lootGenerator(loots)
-        let startingCell = document.getElementById(`cell-${startingCoords[0]}-${startingCoords[1]}`);
-        startingCell.style.backgroundColor = "yellow";
 
         window.sessionStorage.setItem('health', "100");
         window.sessionStorage.setItem('attack', "10");
@@ -65,6 +63,15 @@ function gamePlay() {
         document.getElementById("player-attack").innerText = window.sessionStorage.getItem('attack');
         document.getElementById("player-defence").innerText = window.sessionStorage.getItem('defence');
         window.sessionStorage.setItem('GameLog', JSON.stringify([]));
+        const storageAvatar = JSON.parse(window.sessionStorage.getItem("Avatar"));
+        let startCell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+        console.log(storageAvatar)
+        startCell.style.backgroundImage= storageAvatar[0].img;
+        startCell.style.backgroundSize= storageAvatar[0].size;
+        startCell.style.backgroundRepeat= storageAvatar[0].repeat;
+        startCell.style.backgroundPosition= storageAvatar[0].position;
+        window.sessionStorage.setItem('AvatarC', storageAvatar[0].img);
+        console.log(startCell)
         saveBoard()
     }
 }
