@@ -6,7 +6,6 @@ function playerInteraction(previous, current) {
     currentCell.style.backgroundSize= "cover";
     currentCell.style.backgroundRepeat= "no-repeat";
     currentCell.style.backgroundPosition= "50% 50%";
-    console.log(previousCell.className);
     if((previousCell.className).includes("used") || (previousCell.className).includes("door")){
         recoverLoot(previous)
     }

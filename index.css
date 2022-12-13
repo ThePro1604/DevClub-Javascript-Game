@@ -60,7 +60,6 @@
 .player-stats h3 {
     font-size: 25px;
     margin: 4px;
-    /*font-family: 'Fantasy',  'Copperplate';*/
     font-family: 'Comic Sans MS', 'Papyrus';
 
 }
@@ -70,3 +69,22 @@
     height: 60%;
     overflow-y: scroll;
 }
+
+.fight-updates {
+    text-align: center;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.fight-updates tr{
+    text-align: center;
+}
+
+/*.player-stats td{*/
+/*    border-width: 5px;*/
+/*    box-sizing: border-box;*/
+/*    border-style: inset;*/
+/*    border-color: white;*/
+/*}*/
