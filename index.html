@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="components/dialog/modalbox.css">
     <script src="components/dialog/modalbox.js"></script>
 
+    <link rel="stylesheet" href="components/dialog-fight/modalboxfight.css">
+    <script src="components/dialog-fight/modalboxfight.js"></script>
+
 </head>
 <body onload="popupModal()">
     <div class="info">
@@ -20,11 +23,14 @@
                 <td><h3>Health</h3></td>
                 <td><h3>Attack</h3></td>
                 <td><h3>Defence</h3></td>
+                <td><h3>Key</h3></td>
+
             </tr>
             <tr>
                 <td><h4><span id="player-health"></span></h4></td>
                 <td><h4><span id="player-attack"></span></h4></td>
                 <td><h4><span id="player-defence"></span></h4></td>
+                <td><h4><span id="player-keys"></span></h4></td>
             </tr>
         </table>
         <h2>GameLog</h2>
@@ -58,8 +64,46 @@
                             <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" src="assets/avatars/avatar12.jpg" width="100px" height="100px"/></td>
                         </tr>
                     </table>
+                    <div>
+                        <h2>HOW TO PLAY</h2>
+                        <p>Use the arrow keys in order to move</p>
+                        <p>The question marks can be either Keys / Monster / Loot</p>
+                        <p>You need at least one key in order to open the door and win</p>
+                        <h3>Good Luck</h3>
+                    </div>
+                    <p id="modalError"></p>
                 </div>
-                <p id="modalError"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fight" id="containerfight">
+        <div class="modal-fight" id="myModal-fight">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Let The Battle Commence!</h2>
+                </div>
+                <table class="player-stats">
+                    <tr>
+                        <td><h3>Player Health</h3></td>
+                        <td><h3>Monster Health</h3></td>
+
+                    </tr>
+                    <tr>
+                        <td><h4><span id="player-health-battle"></span></h4></td>
+                        <td><h4><span id="monster-health-battle"></span></h4></td>
+                    </tr>
+                </table>
+
+                <div class="fight-log">
+                    <h3>Battle-Log</h3>
+                    <div class="fight-log-box">
+                        <p id="enemy-attack-log"></p>
+                        <p id="player-attack-log"></p>
+                        <p id="weird-messages"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

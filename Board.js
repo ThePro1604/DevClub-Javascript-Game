@@ -39,12 +39,19 @@ function gamePlay() {
 
         let loots = []
         let monsters = []
-
-        for (let i = 0; i < 180; i++) {
+        const special = 250;
+        const key_max = special/20;
+        let count = 0;
+        let keys = [];
+        for (let i = 0; i < special; i++) {
             let cellID = "cell-" + generateRandom() + "-" + generateRandom();
             let rand = Math.random();
-            if (!(cellID === "cell-1-1")) {
-                if (rand < 0.5) {
+            if (!(cellID === "cell-1-1") && !(cellID === "cell-25-25")) {
+                if (count < key_max) {
+                    keys.push(cellID);
+                    count = count + 1;
+                }
+                else if (rand < 0.5) {
                     loots.push(cellID);
                 } else {
                     monsters.push(cellID);
@@ -55,6 +62,7 @@ function gamePlay() {
         // Append the table to the document
         monsterGenerator(monsters)
         lootGenerator(loots)
+        keysGenerator(keys)
 
         window.sessionStorage.setItem('health', "100");
         window.sessionStorage.setItem('attack', "10");
@@ -63,15 +71,24 @@ function gamePlay() {
         document.getElementById("player-attack").innerText = window.sessionStorage.getItem('attack');
         document.getElementById("player-defence").innerText = window.sessionStorage.getItem('defence');
         window.sessionStorage.setItem('GameLog', JSON.stringify([]));
+
         const storageAvatar = JSON.parse(window.sessionStorage.getItem("Avatar"));
         let startCell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
-        console.log(storageAvatar)
         startCell.style.backgroundImage= storageAvatar[0].img;
         startCell.style.backgroundSize= storageAvatar[0].size;
         startCell.style.backgroundRepeat= storageAvatar[0].repeat;
         startCell.style.backgroundPosition= storageAvatar[0].position;
         window.sessionStorage.setItem('AvatarC', storageAvatar[0].img);
-        console.log(startCell)
+
+        window.sessionStorage.setItem('key', "Missing");
+        let endCell = document.getElementById(`cell-25-25`);
+        endCell.style.backgroundImage= "url(" + '"' + "./assets/loot/door.png" + '"' + ")";
+        endCell.style.backgroundSize= "contain";
+        endCell.style.backgroundRepeat= "no-repeat";
+        endCell.style.backgroundPosition= "50% 50%";
+        endCell.setAttribute("class", "end-door");
+
+
         saveBoard()
     }
 }
@@ -166,6 +183,14 @@ function loadBoard() {
         lootUpdate.style.fontSize = "15px";
         gameLog[0].appendChild(lootUpdate)
     }
+    let endCell = document.getElementById(`cell-25-25`);
+    document.getElementById("player-keys").innerText = window.sessionStorage.getItem('key');
+    endCell.style.backgroundImage= "url(" + '"' + "./assets/loot/door.png" + '"' + ")";
+    endCell.style.backgroundSize= "contain";
+    endCell.style.backgroundRepeat= "no-repeat";
+    endCell.style.backgroundPosition= "50% 50%";
+    endCell.setAttribute("class", "end-door");
+
 }
 
 document.addEventListener("keydown", (event) => {
@@ -185,6 +210,13 @@ document.addEventListener("keydown", (event) => {
             else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
                 lootData(previousLocation, currentLocation)
             }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
+                keyData(previousLocation, currentLocation)
+            }
+            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
+                keyData(previousLocation, currentLocation)
+            }
+
             break;
         case "ArrowDown":
             previousLocation = structuredClone(currentLocation);
@@ -200,6 +232,13 @@ document.addEventListener("keydown", (event) => {
             else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
                 lootData(previousLocation, currentLocation)
             }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
+                keyData(previousLocation, currentLocation)
+            }
+            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
+                keyData(previousLocation, currentLocation)
+            }
+
 
             break;
         case "ArrowLeft":
@@ -216,6 +255,14 @@ document.addEventListener("keydown", (event) => {
             else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
                 lootData(previousLocation, currentLocation)
             }
+            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
+                keyData(previousLocation, currentLocation)
+            }
+            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
+                keyData(previousLocation, currentLocation)
+            }
+
+
 
             break;
         case "ArrowRight":
@@ -232,6 +279,10 @@ document.addEventListener("keydown", (event) => {
             else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
                 lootData(previousLocation, currentLocation)
             }
+            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
+                keyData(previousLocation, currentLocation)
+            }
+
 
             break;
     }

@@ -7,9 +7,17 @@ function playerInteraction(previous, current) {
     currentCell.style.backgroundRepeat= "no-repeat";
     currentCell.style.backgroundPosition= "50% 50%";
     console.log(previousCell.className);
-    if((previousCell.className).includes("used-loot")){
+    if((previousCell.className).includes("used") || (previousCell.className).includes("door")){
         recoverLoot(previous)
     }
+    if((previousCell.className).includes("MonsterDefeated")){
+        recoverMonster(previous)
+    }
+
+        // if((previousCell.className).includes("used-key")){
+    //     recoverKey(previous)
+    // }
+
     // else if ((previousCell.className).includes("monster-killed")){
     //     recoverMonster(previousLocation, currentLocation)
     // }
