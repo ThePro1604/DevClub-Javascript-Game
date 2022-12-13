@@ -22,7 +22,6 @@ function playerInteraction(previous, current) {
     //     recoverMonster(previousLocation, currentLocation)
     // }
 
-    console.log(currentCell)
     window.sessionStorage.setItem('previous-x', previous[0]);
     window.sessionStorage.setItem('previous-y', previous[1]);
     window.sessionStorage.setItem('current-x', current[0]);
@@ -44,7 +43,6 @@ function chooseAvatar(avatar) {
         position: "50% 50%"
     })
     window.sessionStorage.setItem('Avatar', JSON.stringify(avatarInfo));
-    console.log(JSON.stringify(avatarInfo))
     modal.style.display = "none";
     container.style.display = "none";
     gamePlay()

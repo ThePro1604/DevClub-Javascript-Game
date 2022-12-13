@@ -53,7 +53,6 @@ function lootData(previous, current){
         let randomNum = Math.floor(Math.random() * 14);
         randomNum = randomNum + 1;
         window.sessionStorage.setItem('health', String((randomNum + health)));
-        // console.log(window.sessionStorage.getItem('health'));
         document.getElementById("player-health").innerHTML = window.sessionStorage.getItem('health');
         lootUpdate = document.createElement("p");
         lootUpdate.innerHTML = `You Found A Health Potion! You Earned ${randomNum} Health Points!`
@@ -67,7 +66,6 @@ function lootData(previous, current){
         let randomNum = Math.floor(Math.random() * 4);
         randomNum = randomNum + 1;
         window.sessionStorage.setItem('attack', String((randomNum + attack)));
-        // console.log(window.sessionStorage.getItem('attack'));
         document.getElementById("player-attack").innerHTML = window.sessionStorage.getItem('attack');
         lootUpdate = document.createElement("p");
         lootUpdate.innerHTML = `You Found A Attack Potion! You Earned ${randomNum} Attack Points!`
@@ -81,7 +79,6 @@ function lootData(previous, current){
         let randomNum = Math.floor(Math.random() * 4);
         randomNum = randomNum + 1;
         window.sessionStorage.setItem('defence', String((randomNum + defence)));
-        // console.log(window.sessionStorage.getItem('defence'));
         document.getElementById("player-defence").innerHTML = window.sessionStorage.getItem('defence');
         lootUpdate = document.createElement("p");
         lootUpdate.innerHTML = `You Found A Defence Potion! You Earned ${randomNum} Defence Points!`
@@ -91,12 +88,9 @@ function lootData(previous, current){
 
     gameDataForStorage.unshift(lootUpdate.innerHTML);
     window.sessionStorage.setItem('GameLog', JSON.stringify(gameDataForStorage));
-    console.log(gameDataForStorage)
-
     saveBoard()
 }
 function recoverLoot(previous) {
-    console.log(previous)
     let previousCell = document.getElementById(`cell-${previous[0]}-${previous[1]}`);
     if ((previousCell.className).includes("health")) {
         previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion3.png" + '"' + ")";
@@ -149,7 +143,6 @@ function keyData(previous, current) {
     const gameLog = document.getElementsByClassName("game-log");
     const currentCell = document.getElementById(`cell-${current[0]}-${current[1]}`);
     const gameDataForStorage = JSON.parse(window.sessionStorage.getItem("GameLog"));
-    console.log(currentCell.className)
     if ((currentCell.className).includes("door")) {
         if (window.sessionStorage.getItem('key') === "Found"){
             endDoor = document.createElement("p");

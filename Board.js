@@ -165,7 +165,6 @@ function loadBoard() {
                 cell.style.backgroundRepeat= tempCell.repeat;
                 cell.style.backgroundPosition= tempCell.position;
             }
-            // console.log(tableRow[j])
             row.appendChild(cell);
         }
         table.appendChild(row);
@@ -192,98 +191,89 @@ function loadBoard() {
     endCell.setAttribute("class", "end-door");
 
 }
+document.addEventListener("keydown", keyPress);
+// document.addEventListener("keydown", (event) => {
+function keyPress(event) {
+    if (!window.sessionStorage.getItem("MonsterHealth")) {
+        let cell;
+        switch (event.key) {
+            case "ArrowUp":
+                previousLocation = structuredClone(currentLocation);
+                if (currentLocation[0] === 1) {
+                } else {
+                    currentLocation[0] = currentLocation[0] - 1;
+                }
+                playerInteraction(previousLocation, currentLocation);
+                cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+                if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`) {
+                    monsterData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`) {
+                    lootData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) {
+                    keyData(previousLocation, currentLocation)
+                } else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)) {
+                    keyData(previousLocation, currentLocation)
+                }
 
-document.addEventListener("keydown", (event) => {
-    let cell;
-    switch (event.key) {
-        case "ArrowUp":
-            previousLocation = structuredClone(currentLocation);
-            if(currentLocation[0] === 1){
-            } else {
-                currentLocation[0] = currentLocation[0] - 1;
-            }
-            playerInteraction(previousLocation, currentLocation);
-            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
-            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
-                monsterData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
-                lootData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
-                keyData(previousLocation, currentLocation)
-            }
-            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
-                keyData(previousLocation, currentLocation)
-            }
-
-            break;
-        case "ArrowDown":
-            previousLocation = structuredClone(currentLocation);
-            if(currentLocation[0] === 25){
-            } else {
-                currentLocation[0] = currentLocation[0] + 1;
-            }
-            playerInteraction(previousLocation, currentLocation);
-            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
-            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
-                monsterData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
-                lootData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
-                keyData(previousLocation, currentLocation)
-            }
-            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
-                keyData(previousLocation, currentLocation)
-            }
+                break;
+            case "ArrowDown":
+                previousLocation = structuredClone(currentLocation);
+                if (currentLocation[0] === 25) {
+                } else {
+                    currentLocation[0] = currentLocation[0] + 1;
+                }
+                playerInteraction(previousLocation, currentLocation);
+                cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+                if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`) {
+                    monsterData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`) {
+                    lootData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) {
+                    keyData(previousLocation, currentLocation)
+                } else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)) {
+                    keyData(previousLocation, currentLocation)
+                }
 
 
-            break;
-        case "ArrowLeft":
-            previousLocation = structuredClone(currentLocation);
-            if(currentLocation[1] === 1){
-            } else {
-                currentLocation[1] = currentLocation[1] - 1;
-            }
-            playerInteraction(previousLocation, currentLocation);
-            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
-            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
-                monsterData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
-                lootData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`){
-                keyData(previousLocation, currentLocation)
-            }
-            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
-                keyData(previousLocation, currentLocation)
-            }
+                break;
+            case "ArrowLeft":
+                previousLocation = structuredClone(currentLocation);
+                if (currentLocation[1] === 1) {
+                } else {
+                    currentLocation[1] = currentLocation[1] - 1;
+                }
+                playerInteraction(previousLocation, currentLocation);
+                cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+                if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`) {
+                    monsterData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`) {
+                    lootData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) {
+                    keyData(previousLocation, currentLocation)
+                } else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)) {
+                    keyData(previousLocation, currentLocation)
+                }
 
 
+                break;
+            case "ArrowRight":
+                previousLocation = structuredClone(currentLocation);
+                if (currentLocation[1] === 25) {
+                } else {
+                    currentLocation[1] = currentLocation[1] + 1;
+                }
+                playerInteraction(previousLocation, currentLocation);
+                cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
+                if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`) {
+                    monsterData(previousLocation, currentLocation)
+                } else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`) {
+                    lootData(previousLocation, currentLocation)
+                } else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)) {
+                    keyData(previousLocation, currentLocation)
+                }
 
-            break;
-        case "ArrowRight":
-            previousLocation = structuredClone(currentLocation);
-            if(currentLocation[1] === 25){
-            } else {
-                currentLocation[1] = currentLocation[1] + 1;
-            }
-            playerInteraction(previousLocation, currentLocation);
-            cell = document.getElementById(`cell-${currentLocation[0]}-${currentLocation[1]}`);
-            if(cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-monster`){
-                monsterData(previousLocation, currentLocation)
-            }
-            else if (cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-loot`){
-                lootData(previousLocation, currentLocation)
-            }
-            else if ((cell.className === `cell-${currentLocation[0]}-${currentLocation[1]}-key`) || (cell.className === `end-door`)){
-                keyData(previousLocation, currentLocation)
-            }
-
-
-            break;
+                break;
+        }
     }
-});
+}
+// });

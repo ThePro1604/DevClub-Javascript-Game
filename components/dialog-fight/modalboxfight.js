@@ -1,8 +1,6 @@
 function popupModalFight() {
     let container = document.getElementById("containerfight");
     let modal = document.getElementById("myModal-fight");
-    console.log(modal)
-    console.log(container)
     if (window.sessionStorage.getItem("MonsterHealth")) {
         modal.style.display = "block";
         container.style.display = "block";
