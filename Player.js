@@ -14,22 +14,13 @@ function playerInteraction(previous, current) {
         recoverMonster(previous)
     }
 
-        // if((previousCell.className).includes("used-key")){
-    //     recoverKey(previous)
-    // }
-
-    // else if ((previousCell.className).includes("monster-killed")){
-    //     recoverMonster(previousLocation, currentLocation)
-    // }
-
     window.sessionStorage.setItem('previous-x', previous[0]);
     window.sessionStorage.setItem('previous-y', previous[1]);
     window.sessionStorage.setItem('current-x', current[0]);
-    window.sessionStorage.setItem('current-y', current[1]);
-
+    window.sessionStorage.setItem('current-y', current[1])
 }
 
-
+// avatar pick at the beginning of the game
 function chooseAvatar(avatar) {
     let avatarInfo = [];
     let modal = document.getElementById("myModal");
