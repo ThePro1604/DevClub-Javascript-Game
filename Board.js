@@ -198,7 +198,7 @@ function loadBoard() {
 // recognize the movement keystrokes
 document.addEventListener("keydown", keyPress);
 function keyPress(event) {
-    if (!window.sessionStorage.getItem("MonsterHealth") || !window.sessionStorage.getItem("tableData")) {
+    if (!(window.sessionStorage.getItem("MonsterHealth")) || !(window.sessionStorage.getItem("tableData"))) {
         switch (event.key) {
             case "ArrowUp":
                 previousLocation = structuredClone(currentLocation);

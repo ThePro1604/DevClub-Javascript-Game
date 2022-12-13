@@ -126,6 +126,7 @@ function battleManager(previous, current, currentCell) {
             ResultUpdate.style.fontSize = "30px";
             ResultUpdate.style.fontWeight = "bold";
             ResultUpdate.style.display = "block";
+
             setTimeout(function () {
                 window.sessionStorage.clear();
                 location.reload();

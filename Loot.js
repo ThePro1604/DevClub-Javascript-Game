@@ -141,8 +141,8 @@ function keyData(previous, current) {
             gameLog[0].insertBefore(endDoor, gameLog[0].firstChild);
             gameDataForStorage.unshift(endDoor.innerHTML);
             window.sessionStorage.removeItem("tableData");
+            window.sessionStorage.clear();
             setTimeout(function(){
-                window.sessionStorage.clear();
                 location.reload();
             }, 5000)
         }
