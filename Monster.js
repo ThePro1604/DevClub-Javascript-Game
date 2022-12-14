@@ -49,6 +49,7 @@ function monsterGenerator(monsters) {
 function monsterData(previous, current){
     const currentCell = document.getElementById(`cell-${current[0]}-${current[1]}`);
     const monsterType = chooseMonster();
+    const special = document.getElementById("attack-two")
 
     //decides monster health between 30-50
     let randomNum = Math.floor(Math.random() * 30);
@@ -70,17 +71,22 @@ function monsterData(previous, current){
     document.getElementById("player-health-battle").innerHTML = window.sessionStorage.getItem('health');
 
     if (`cell-${current[0]}-${current[1]}-monster` === currentCell.className) {
+        if (Number(window.sessionStorage.getItem('SpecialCount')) === 0){
+            special.style.display = "none";
+        }
         popupModalFight()
-        isDone = setInterval(function (){
-            battleManager(previous, current, currentCell)
-        }, 1000)
-        currentCell.style.backgroundImage = storageAvatar[0].img
-        saveBoard()
+        currentCell.setAttribute("class", "MonsterDefeated");
+        // currentCell.style.backgroundImage = storageAvatar[0].img
     }
 }
 
+
+
 //in charge on battle management (runs in intervals of 1 second)
-function battleManager(previous, current, currentCell) {
+function battleManager(multiplier) {
+    const special = document.getElementById("attack-two")
+    const normal = document.getElementById("attack-one")
+
     //determine monster attack to this interval
     let randomNum = Math.floor(Math.random() * 5);
     randomNum = randomNum + 5;
@@ -90,7 +96,6 @@ function battleManager(previous, current, currentCell) {
     randomNum = Math.floor(Math.random() * 3);
     const playerAttack = Number(window.sessionStorage.getItem('attack')) - randomNum;
 
-
     //logs the battle actions and the game actions (game actions = victory in battle)
     const gameLog = document.getElementsByClassName("game-log");
     const modal = document.getElementById("myModal-fight");
@@ -98,68 +103,87 @@ function battleManager(previous, current, currentCell) {
     const monsterHealth = Number(window.sessionStorage.getItem('MonsterHealth'));
     const playerHealth = Number(window.sessionStorage.getItem("health"));
     const playerDefence = Number(window.sessionStorage.getItem('defence'));
-    const fightUpdatePlayer = document.getElementById("player-attack-log");
-    const fightUpdateMonster = document.getElementById("enemy-attack-log");
+    const fightUpdates = document.getElementById("result-message");
+    // const fightUpdateMonster = document.getElementById("enemy-attack-log");
     let ResultUpdate;
 
-    //if the monster has more than 0 health (meaning it's still alive)
-    if (Number(window.sessionStorage.getItem("MonsterHealth")) > 0) {
-        let defence = (monsterAttack * playerDefence) / 100
-        let attackAfterDefence = monsterAttack - defence
-        fightUpdateMonster.innerHTML = `You Received <strong style="font-size: 23px">${attackAfterDefence.toFixed(0)}</strong> Points Of Damage`
-        fightUpdateMonster.style.fontSize = "20px";
-        window.sessionStorage.setItem('health', String((playerHealth - attackAfterDefence).toFixed(2)))
-        document.getElementById("player-health-battle").innerHTML = window.sessionStorage.getItem('health');
 
-        //if the player has more than 0 health (meaning he's still alive)
-        if (Number(window.sessionStorage.getItem("health")) > 0) {
-            fightUpdatePlayer.innerHTML = `The Monster Received <strong style="font-size: 23px">${playerAttack}</strong> Point Of Damage`;
-            fightUpdatePlayer.style.fontSize = "20px";
-            window.sessionStorage.setItem('MonsterHealth', String(Number(monsterHealth) - Number(playerAttack)));
-            document.getElementById("monster-health-battle").innerHTML = window.sessionStorage.getItem('MonsterHealth');
-        }
-
-        // if the player dies (write he dies and resets the game)
-        else {
-            ResultUpdate = document.getElementById("result-message");
-            ResultUpdate.innerHTML = `You Lost!`
-            ResultUpdate.style.fontSize = "30px";
-            ResultUpdate.style.fontWeight = "bold";
-            ResultUpdate.style.display = "block";
-
-            setTimeout(function () {
-                window.sessionStorage.clear();
-                location.reload();
-            }, 5000)
-            clearInterval(isDone);
-        }
+    if (multiplier === 2) {
+        window.sessionStorage.setItem('SpecialCount', String(Number(window.sessionStorage.getItem('SpecialCount')) - 1));
+        document.getElementById("special-counter").innerHTML = window.sessionStorage.getItem('SpecialCount');
     }
 
-    // if the monster dies (closes the battle window updates data on the main board)
-    else {
-        ResultUpdate = document.createElement("p");
-        ResultUpdate.innerHTML = `The Enemy Health Has Perished`
-        ResultUpdate.style.fontSize = "15px";
-        ResultUpdate.style.fontWeight = "bold";
-        gameLog[0].insertBefore(ResultUpdate, gameLog[0].firstChild);
-        document.getElementById("player-health").innerHTML = window.sessionStorage.getItem('health');
-        currentCell.setAttribute("class", "MonsterDefeated");
+    //if the player has more than 0 health (meaning he's still alive)
+    if (Number(window.sessionStorage.getItem("health")) > 0) {
+        fightUpdates.innerHTML = `The Monster Received <strong style="font-size: 23px">${Number(playerAttack)*multiplier}</strong> Point Of Damage`;
+        window.sessionStorage.setItem('MonsterHealth', String(Number(monsterHealth) - Number(playerAttack)*multiplier));
+        document.getElementById("monster-health-battle").innerHTML = window.sessionStorage.getItem('MonsterHealth');
+        //if the monster has more than 0 health (meaning it's still alive)
+        if (Number(window.sessionStorage.getItem("MonsterHealth")) > 0) {
+            normal.style.display = "none";
+            special.style.display = "none";
+            setTimeout(function (){
+                let defence = (monsterAttack * playerDefence) / 100
+                let attackAfterDefence = monsterAttack - defence
+                fightUpdates.innerHTML = `You Received <strong style="font-size: 23px">${attackAfterDefence.toFixed(0)}</strong> Points Of Damage`
+                window.sessionStorage.setItem('health', String((playerHealth - attackAfterDefence).toFixed(2)))
+                document.getElementById("player-health-battle").innerHTML = window.sessionStorage.getItem('health');
+            }, 1500)
+        }
 
+        // if the monster dies
+        else {
+            ResultUpdate = document.createElement("p");
+            ResultUpdate.innerHTML = `The Enemy Health Has Perished`
+            ResultUpdate.style.fontSize = "15px";
+            ResultUpdate.style.fontWeight = "bold";
+            gameLog[0].insertBefore(ResultUpdate, gameLog[0].firstChild);
+            document.getElementById("player-health").innerHTML = window.sessionStorage.getItem('health');
+
+            ResultUpdate = document.getElementById("result-message");
+            ResultUpdate.innerHTML = `You Won!`
+            ResultUpdate.style.fontSize = "30px";
+            ResultUpdate.style.fontWeight = "bold";
+            normal.style.display = "none";
+            special.style.display = "none";
+
+            setTimeout(function () {
+                fightUpdates.innerHTML = "Begin The Battle!"
+                modal.style.display = "none";
+                container.style.display = "none";
+                const currentCell = document.getElementById(`cell-${window.sessionStorage.getItem("previous-x")}-${window.sessionStorage.getItem("previous-y")}`);
+                currentCell.style.backgroundImage = storageAvatar[0].img
+            }, 2000)
+            window.sessionStorage.removeItem("MonsterHealth");
+        }
+    }
+    // if the player dies (write he dies and resets the game)
+    else {
         ResultUpdate = document.getElementById("result-message");
-        ResultUpdate.innerHTML = `You Won!`
+        ResultUpdate.innerHTML = `You Lost!`
         ResultUpdate.style.fontSize = "30px";
         ResultUpdate.style.fontWeight = "bold";
         ResultUpdate.style.display = "block";
+        normal.style.display = "none";
+        special.style.display = "none";
+
 
         setTimeout(function () {
-            ResultUpdate.style.display = "none"
-            modal.style.display = "none";
-            container.style.display = "none";
-        }, 2000)
-        window.sessionStorage.removeItem("MonsterHealth");
-        clearInterval(isDone)
+            window.sessionStorage.clear();
+            location.reload();
+        }, 5000)
     }
+    if (window.sessionStorage.getItem('SpecialCount') === "0"){
+        special.style.display = "none";
+        normal.style.display = "inline-flex";
+    }
+    else {
+        normal.style.display = "inline-flex";
+        special.style.display = "inline-flex";
+    }
+
     document.getElementById("player-health").innerHTML = window.sessionStorage.getItem('health');
+    saveBoard()
 }
 
 // adds back the cell image after player moved from the cell

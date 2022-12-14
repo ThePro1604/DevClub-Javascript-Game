@@ -71,6 +71,7 @@ function gamePlay() {
         window.sessionStorage.setItem('attack', "10");
         window.sessionStorage.setItem('defence', "10");
         window.sessionStorage.setItem('GameLog', JSON.stringify([]));
+        window.sessionStorage.setItem('SpecialCount', "4");
         const storageAvatar = JSON.parse(window.sessionStorage.getItem("Avatar"));
 
         // setting the starting point

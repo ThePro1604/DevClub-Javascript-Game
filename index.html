@@ -92,22 +92,22 @@
 
                     </tr>
                     <tr>
-                        <td><h4><span id="player-health-battle"></span></h4></td>
-                        <td><h4><span id="monster-health-battle"></span></h4></td>
+                        <td><h4><span id="player-health-battle">0</span></h4></td>
+                        <td><h4><span id="monster-health-battle">0</span></h4></td>
                     </tr>
                 </table>
 
                 <div class="fight-log">
                     <h2>Battle-Log</h2>
-                    <div class="fight-log-box">
-                        <p style="display: none" id="result-message"></p>
-                        <table class="fight-updates">
-                            <tr>
-                                <td><p id="enemy-attack-log"></p></td>
-                                <td><p id="player-attack-log"></p></td>
-                            </tr>
-                        </table>
+                    <div class="text-box">
+                        <p id="result-message">Begin The Battle!</p>
                     </div>
+                    <table class="fight-updates">
+                        <tr>
+                            <td><button onclick="battleManager(1)" id="attack-one" class="attack">Normal Attack (Infinite)</button></td>
+                            <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Damage Special Attack (<span id="special-counter" >4</span>/4)</button></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
