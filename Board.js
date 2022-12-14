@@ -153,6 +153,7 @@ function loadBoard() {
     const storageGameLog = JSON.parse(window.sessionStorage.getItem("GameLog"));
     const retrieve = window.sessionStorage.getItem('tableData');
     const tableData = JSON.parse(retrieve);
+    document.getElementById("special-counter").innerHTML = window.sessionStorage.getItem('SpecialCount');
 
     // pulling the table array from memory and converting it back to HTML table
     const table = document.createElement("table");
