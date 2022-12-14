@@ -181,7 +181,8 @@ function battleManager(multiplier) {
     }, 1000)
     setTimeout(function () {
     if (window.sessionStorage.getItem('SpecialCount') === "0") {
-            special.style.display = "none";
+            special.style.opacity = "0";
+            special.style.pointerEvents = "none";
             normal.style.opacity = "1";
             normal.style.pointerEvents = "auto";
 
