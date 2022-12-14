@@ -25,17 +25,25 @@ and (min-width : 1224px) {
         display: none;
         position: absolute;
         z-index: 1;
-        width: 40%;
+        width: auto;
         height: 100%;
-        /*overflow: auto;*/
+        overflow: auto;
         top: 50%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
         animation-name: animatetop;
         animation-duration: 0.4s;
+        -ms-overflow-style: none;  /* IE and Edge */
+        /*scrollbar-width: none;  !* Firefox *!*/
+
     }
 }
+
+.modal::-webkit-scrollbar {
+    display: none;
+}
+
 
 .character-table {
     text-align: center;
@@ -77,6 +85,10 @@ and (min-width : 1224px) {
     background-color: #fefefe;
     margin: 15% auto;
     border: 1px solid #888;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+
+
 }
 .modal-content p{
     padding: 20px;
