@@ -98,13 +98,13 @@ function battleManager(multiplier) {
 
     //logs the battle actions and the game actions (game actions = victory in battle)
     const gameLog = document.getElementsByClassName("game-log");
+    const turns = document.getElementById("turns");
     const modal = document.getElementById("myModal-fight");
     const container = document.getElementById("containerfight");
     const monsterHealth = Number(window.sessionStorage.getItem('MonsterHealth'));
     const playerHealth = Number(window.sessionStorage.getItem("health"));
     const playerDefence = Number(window.sessionStorage.getItem('defence'));
     const fightUpdates = document.getElementById("result-message");
-    // const fightUpdateMonster = document.getElementById("enemy-attack-log");
     let ResultUpdate;
 
 
@@ -115,6 +115,7 @@ function battleManager(multiplier) {
 
     //if the player has more than 0 health (meaning he's still alive)
     if (Number(window.sessionStorage.getItem("health")) > 0) {
+        turns.innerHTML = "It's Now The Monster's turn";
         fightUpdates.innerHTML = `The Monster Received <strong style="font-size: 23px">${Number(playerAttack)*multiplier}</strong> Point Of Damage`;
         window.sessionStorage.setItem('MonsterHealth', String(Number(monsterHealth) - Number(playerAttack)*multiplier));
         document.getElementById("monster-health-battle").innerHTML = window.sessionStorage.getItem('MonsterHealth');
@@ -123,6 +124,7 @@ function battleManager(multiplier) {
             normal.style.display = "none";
             special.style.display = "none";
             setTimeout(function (){
+                turns.innerHTML = "It's Now Your Turn";
                 let defence = (monsterAttack * playerDefence) / 100
                 let attackAfterDefence = monsterAttack - defence
                 fightUpdates.innerHTML = `You Received <strong style="font-size: 23px">${attackAfterDefence.toFixed(0)}</strong> Points Of Damage`
@@ -141,7 +143,7 @@ function battleManager(multiplier) {
             document.getElementById("player-health").innerHTML = window.sessionStorage.getItem('health');
 
             ResultUpdate = document.getElementById("result-message");
-            ResultUpdate.innerHTML = `You Won!`
+            ResultUpdate.innerHTML = `You Won!`;
             ResultUpdate.style.fontSize = "30px";
             ResultUpdate.style.fontWeight = "bold";
             normal.style.display = "none";
@@ -149,6 +151,7 @@ function battleManager(multiplier) {
 
             setTimeout(function () {
                 fightUpdates.innerHTML = "Begin The Battle!"
+                turns.innerHTML = "Battle-Log";
                 modal.style.display = "none";
                 container.style.display = "none";
                 const currentCell = document.getElementById(`cell-${window.sessionStorage.getItem("previous-x")}-${window.sessionStorage.getItem("previous-y")}`);
