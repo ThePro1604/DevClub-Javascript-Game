@@ -71,7 +71,7 @@ function gamePlay() {
         window.sessionStorage.setItem('attack', "10");
         window.sessionStorage.setItem('defence', "10");
         window.sessionStorage.setItem('GameLog', JSON.stringify([]));
-        window.sessionStorage.setItem('SpecialCount', "4");
+        window.sessionStorage.setItem('SpecialCount', "44");
         const storageAvatar = JSON.parse(window.sessionStorage.getItem("Avatar"));
 
         // setting the starting point
@@ -200,43 +200,45 @@ function loadBoard() {
 // recognize the movement keystrokes
 document.addEventListener("keydown", keyPress);
 function keyPress(event) {
-    if (!(window.sessionStorage.getItem("MonsterHealth")) || !(window.sessionStorage.getItem("tableData"))) {
-        switch (event.key) {
-            case "ArrowUp":
-                previousLocation = structuredClone(currentLocation);
-                if (currentLocation[0] === 1) {
-                } else {
-                    currentLocation[0] = currentLocation[0] - 1;
-                }
-                classSpread(previousLocation, currentLocation)
-                break;
+    if (!(window.sessionStorage.getItem("MonsterHealth"))) {
+        if (window.sessionStorage.getItem("inDoor") !== "True") {
+            switch (event.key) {
+                case "ArrowUp":
+                    previousLocation = structuredClone(currentLocation);
+                    if (currentLocation[0] === 1) {
+                    } else {
+                        currentLocation[0] = currentLocation[0] - 1;
+                    }
+                    classSpread(previousLocation, currentLocation)
+                    break;
 
-            case "ArrowDown":
-                previousLocation = structuredClone(currentLocation);
-                if (currentLocation[0] === 25) {
-                } else {
-                    currentLocation[0] = currentLocation[0] + 1;
-                }
-                classSpread(previousLocation, currentLocation)
-                break;
+                case "ArrowDown":
+                    previousLocation = structuredClone(currentLocation);
+                    if (currentLocation[0] === 25) {
+                    } else {
+                        currentLocation[0] = currentLocation[0] + 1;
+                    }
+                    classSpread(previousLocation, currentLocation)
+                    break;
 
-            case "ArrowLeft":
-                previousLocation = structuredClone(currentLocation);
-                if (currentLocation[1] === 1) {
-                } else {
-                    currentLocation[1] = currentLocation[1] - 1;
-                }
-                classSpread(previousLocation, currentLocation)
-                break;
+                case "ArrowLeft":
+                    previousLocation = structuredClone(currentLocation);
+                    if (currentLocation[1] === 1) {
+                    } else {
+                        currentLocation[1] = currentLocation[1] - 1;
+                    }
+                    classSpread(previousLocation, currentLocation)
+                    break;
 
-            case "ArrowRight":
-                previousLocation = structuredClone(currentLocation);
-                if (currentLocation[1] === 25) {
-                } else {
-                    currentLocation[1] = currentLocation[1] + 1;
-                }
-                classSpread(previousLocation, currentLocation)
-                break;
+                case "ArrowRight":
+                    previousLocation = structuredClone(currentLocation);
+                    if (currentLocation[1] === 25) {
+                    } else {
+                        currentLocation[1] = currentLocation[1] + 1;
+                    }
+                    classSpread(previousLocation, currentLocation)
+                    break;
+            }
         }
     }
 }

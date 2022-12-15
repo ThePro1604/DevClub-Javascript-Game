@@ -141,10 +141,11 @@ function keyData(previous, current) {
             gameLog[0].insertBefore(endDoor, gameLog[0].firstChild);
             gameDataForStorage.unshift(endDoor.innerHTML);
             window.sessionStorage.removeItem("tableData");
-            window.sessionStorage.clear();
+            window.sessionStorage.setItem("inDoor", "True")
             setTimeout(function(){
+                window.sessionStorage.clear();
                 location.reload();
-            }, 5000)
+            }, 4000)
         }
         // if the player missing a key returns a message in the game log
         else {
