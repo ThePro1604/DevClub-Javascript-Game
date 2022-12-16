@@ -3,7 +3,7 @@ function playerInteraction(previous, current) {
     let currentCell = document.getElementById(`cell-${current[0]}-${current[1]}`);
     previousCell.style.backgroundImage = null;
     currentCell.style.backgroundImage = window.sessionStorage.getItem("AvatarC");
-    currentCell.style.backgroundSize= "cover";
+    currentCell.style.backgroundSize= "contain";
     currentCell.style.backgroundRepeat= "no-repeat";
     currentCell.style.backgroundPosition= "50% 50%";
     if((previousCell.className).includes("used") || (previousCell.className).includes("door")){
@@ -27,8 +27,8 @@ function chooseAvatar(avatar) {
 
     avatarInfo.push({
         class: "cell-1-1",
-        img: "url("+'"'+"./assets/avatars/"+avatar+".jpg"+'"'+")",
-        size: "cover",
+        img: "url("+'"'+"./assets/avatars/"+avatar+".png"+'"'+")",
+        size: "contain",
         repeat: "no-repeat",
         position: "50% 50%"
     })

@@ -35,7 +35,7 @@ function lootData(previous, current){
     //creates health type loot which gives a random amount of HP between 1-15
     if (lootType === "health"){
         currentCell.setAttribute("class", "used-loot-health");
-        currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion3.png" + '"' + ")";
+        // currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion3.png" + '"' + ")";
         let health = Number(window.sessionStorage.getItem('health'));
         let randomNum = Math.floor(Math.random() * 14);
         randomNum = randomNum + 1;
@@ -48,7 +48,7 @@ function lootData(previous, current){
 
     //creates attack type loot which gives a random amount of attack bonus between 1-5
     if (lootType === "attack"){
-        currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion5.png" + '"' + ")";
+        // currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion5.png" + '"' + ")";
         currentCell.setAttribute("class", "used-loot-attack");
         let attack = Number(window.sessionStorage.getItem('attack'));
         let randomNum = Math.floor(Math.random() * 4);
@@ -62,7 +62,7 @@ function lootData(previous, current){
 
     //creates defence type loot which gives a random amount of defence bonus between 1-5
     if (lootType === "defence"){
-        currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion2.png" + '"' + ")";
+        // currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion2.png" + '"' + ")";
         currentCell.setAttribute("class", "used-loot-defence");
         let defence = Number(window.sessionStorage.getItem('defence'));
         let randomNum = Math.floor(Math.random() * 4);

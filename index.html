@@ -18,14 +18,13 @@
 </head>
 <body onload="popupModal()">
     <div class="info">
-        <h1>Welcome To The Wild</h1>
+        <img src="./assets/bleach_title.png" alt="Bleach Title" width="100%" height="auto">
         <table class="player-stats">
             <tr>
                 <td><h3>Health</h3></td>
                 <td><h3>Attack</h3></td>
                 <td><h3>Defence</h3></td>
                 <td><h3>Key</h3></td>
-
             </tr>
             <tr>
                 <td><h4><span id="player-health"></span></h4></td>
@@ -46,30 +45,32 @@
                     <h2>Welcome Player!</h2>
                 </div>
                 <div class="characters">
-                    <h3>Choose Your Avatar!</h3>
+                    <h3>Choose Your Shinigami!</h3>
                     <table class="character-table">
                         <tr>
-                            <td><img alt="avatar1" onclick="chooseAvatar(`avatar1`)" id="avatar1" src="assets/avatars/avatar1.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar2" onclick="chooseAvatar(`avatar2`)" id="avatar2" src="assets/avatars/avatar2.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar3" onclick="chooseAvatar(`avatar3`)" id="avatar3" src="assets/avatars/avatar3.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar4" onclick="chooseAvatar(`avatar4`)" id="avatar4" src="assets/avatars/avatar4.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar5" onclick="chooseAvatar(`avatar5`)" id="avatar5" src="assets/avatars/avatar5.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar6" onclick="chooseAvatar(`avatar6`)" id="avatar6" src="assets/avatars/avatar6.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar1" onclick="chooseAvatar(`avatar1`)" id="avatar1" src="assets/avatars/avatar1.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar2" onclick="chooseAvatar(`avatar2`)" id="avatar2" src="assets/avatars/avatar2.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar3" onclick="chooseAvatar(`avatar3`)" id="avatar3" src="assets/avatars/avatar3.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar4" onclick="chooseAvatar(`avatar4`)" id="avatar4" src="assets/avatars/avatar4.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar5" onclick="chooseAvatar(`avatar5`)" id="avatar5" src="assets/avatars/avatar5.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar6" onclick="chooseAvatar(`avatar6`)" id="avatar6" src="assets/avatars/avatar6.png" width="auto" height="100px"/></td>
                         </tr>
                         <tr>
-                            <td><img alt="avatar7" onclick="chooseAvatar(`avatar7`)" id="avatar7" src="assets/avatars/avatar7.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar8" onclick="chooseAvatar(`avatar8`)" id="avatar8" src="assets/avatars/avatar8.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar9" onclick="chooseAvatar(`avatar9`)" id="avatar9" src="assets/avatars/avatar9.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar10" onclick="chooseAvatar(`avatar10`)" id="avatar10" src="assets/avatars/avatar10.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar11" onclick="chooseAvatar(`avatar11`)" id="avatar11" src="assets/avatars/avatar11.jpg" width="100px" height="100px"/></td>
-                            <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" src="assets/avatars/avatar12.jpg" width="100px" height="100px"/></td>
+                            <td><img alt="avatar7" onclick="chooseAvatar(`avatar7`)" id="avatar7" src="assets/avatars/avatar7.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar8" onclick="chooseAvatar(`avatar8`)" id="avatar8" src="assets/avatars/avatar8.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar9" onclick="chooseAvatar(`avatar9`)" id="avatar9" src="assets/avatars/avatar9.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar10" onclick="chooseAvatar(`avatar10`)" id="avatar10" src="assets/avatars/avatar10.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar11" onclick="chooseAvatar(`avatar11`)" id="avatar11" src="assets/avatars/avatar11.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" src="assets/avatars/avatar12.png" width="auto" height="100px"/></td>
                         </tr>
                     </table>
                     <div>
                         <h2>HOW TO PLAY</h2>
+                        <p>The Arrancars are trying to invade the soul society</p>
+                        <p>defeat the Arrancars and reach the door before them</p>
                         <p>Use the arrow keys in order to move</p>
-                        <p>The question marks can be either Keys / Monster / Loot</p>
-                        <p>You need at least one key in order to open the door and win</p>
+                        <p>The question marks can be either Keys / Arrancars or Loot</p>
+                        <p>You need at least one key in order to open the door and defeat the Arrancars</p>
                         <h3>Good Luck</h3>
                     </div>
                     <p id="modalError"></p>
@@ -88,7 +89,7 @@
                 <table class="player-stats">
                     <tr>
                         <td><h3>Player Health</h3></td>
-                        <td><h3>Monster Health</h3></td>
+                        <td><h3>Arrancar Health</h3></td>
 
                     </tr>
                     <tr>
@@ -104,8 +105,12 @@
                     </div>
                     <table class="fight-updates">
                         <tr>
-                            <td><button onclick="battleManager(1)" id="attack-one" class="attack">Normal Attack (Infinite)</button></td>
-                            <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Damage Special Attack (<span id="special-counter" >4</span>/4)</button></td>
+                            <td><button onclick="battleManager(1)" id="attack-one" class="attack">Base Zanpakutō (Infinite)</button></td>
+                            <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Shikai Form (<span id="special-counter" >4</span>/4)</button></td>
+                        </tr>
+                        <tr>
+                            <td><button onclick="battleManager(3)" id="attack-three" class="attack">x3 Bankai Form (<span id="ultimate-counter" >0</span>)</button></td>
+                            <td><button onclick="battleManager(4)" id="attack-four" class="attack">Horn Of Salvation (<span id="opm-counter" >0</span>)</button></td>
                         </tr>
                     </table>
                 </div>

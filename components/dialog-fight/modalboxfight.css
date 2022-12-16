@@ -83,6 +83,7 @@ and (min-width : 1224px) {
     /*width: 80%;*/
     margin-bottom: 2%;
     overflow-x: auto;
+    width: 100%;
 }
 
 
