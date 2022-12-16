@@ -30,7 +30,7 @@ function monsterGenerator(monsters) {
     for (let cell of monsters){
         let hostile = document.getElementById(cell);
         hostile.setAttribute("class", cell+"-monster");
-        hostile.style.backgroundImage = "url(" + '"' + "./assets/flooring/Qmark.png" + '"' + ")";
+        hostile.style.backgroundImage = "url(" + '"' + "./assets/ect/Qmark.png" + '"' + ")";
 
         hostile.style.backgroundSize= "contain";
         hostile.style.backgroundRepeat= "no-repeat";
@@ -41,7 +41,7 @@ function monsterGenerator(monsters) {
 // in charge of the monster data creation
 function monsterData(previous, current){
     const currentCell = document.getElementById(`cell-${current[0]}-${current[1]}`);
-    const monsterType = chooseMonster();
+    // const monsterType = chooseMonster();
     const normal = document.getElementById("attack-one")
     const special = document.getElementById("attack-two")
     const ultimate = document.getElementById("attack-three")
@@ -73,20 +73,19 @@ function monsterData(previous, current){
 
 
     if (`cell-${current[0]}-${current[1]}-monster` === currentCell.className) {
-        if (window.sessionStorage.getItem('SpecialCount') === "0") {
+        if (window.sessionStorage.getItem('SpecialCount1') === "0") {
             // special.style.opacity = "0";
-            console.log("why")
             special.style.pointerEvents = "none";
             special.style.backgroundColor = "#9c9c9c";
             special.style.boxShadow = " rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #494848 0 -3px 0 inset";
         }
-        if (window.sessionStorage.getItem('UltimateCount') === "0") {
+        if (window.sessionStorage.getItem('SpecialCount2') === "0") {
             // ultimate.style.opacity = "0";
             ultimate.style.pointerEvents = "none";
             ultimate.style.backgroundColor = "#9c9c9c"
             ultimate.style.boxShadow = "rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #494848 0 -3px 0 inset";
         }
-        if (window.sessionStorage.getItem('OPMCount') === "0") {
+        if (window.sessionStorage.getItem('SpecialCount3') === "0") {
             // punch.style.opacity = "0";
             punch.style.pointerEvents = "none";
             punch.style.backgroundColor = "#9c9c9c"
@@ -116,16 +115,16 @@ function battleManager(multiplier) {
     punch.style.pointerEvents = "none";
 
     if (multiplier === 2) {
-        window.sessionStorage.setItem('SpecialCount', String(Number(window.sessionStorage.getItem('SpecialCount')) - 1));
-        document.getElementById("special-counter").innerHTML = window.sessionStorage.getItem('SpecialCount');
+        window.sessionStorage.setItem('SpecialCount1', String(Number(window.sessionStorage.getItem('SpecialCount1')) - 1));
+        document.getElementById("special-counter1").innerHTML = window.sessionStorage.getItem('SpecialCount1');
     } else if (multiplier === 3) {
-        window.sessionStorage.setItem('UltimateCount', String(Number(window.sessionStorage.getItem('UltimateCount')) - 1))
-        document.getElementById("ultimate-counter").innerHTML = window.sessionStorage.getItem('UltimateCount');
+        window.sessionStorage.setItem('SpecialCount2', String(Number(window.sessionStorage.getItem('SpecialCount2')) - 1))
+        document.getElementById("special-counter2").innerHTML = window.sessionStorage.getItem('SpecialCount2');
     }
     else if (multiplier === 4) {
-        window.sessionStorage.setItem('OPMCount', String(Number(window.sessionStorage.getItem('OPMCount')) - 1))
-        document.getElementById("opm-counter").innerHTML = window.sessionStorage.getItem('OPMCount');
-        multiplier = 3000;
+        window.sessionStorage.setItem('SpecialCount3', String(Number(window.sessionStorage.getItem('SpecialCount3')) - 1))
+        document.getElementById("special-counter3").innerHTML = window.sessionStorage.getItem('SpecialCount3');
+        multiplier = 10;
     }
 
     //if the player has more than 0 health (meaning he's still alive)
@@ -167,7 +166,7 @@ function moveCountCheck(){
     const ultimate = document.getElementById("attack-three")
     const punch = document.getElementById("attack-four")
 
-    if (window.sessionStorage.getItem('SpecialCount') !== "0") {
+    if (window.sessionStorage.getItem('SpecialCount1') !== "0") {
         // special.style.opacity = "1";
         special.style.pointerEvents = "auto";
         special.style.backgroundColor = "#FCFCFD";
@@ -177,7 +176,7 @@ function moveCountCheck(){
         special.style.backgroundColor = "#9c9c9c";
         special.style.boxShadow = " rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #494848 0 -3px 0 inset";
     }
-    if (window.sessionStorage.getItem('OPMCount') !== "0") {
+    if (window.sessionStorage.getItem('SpecialCount3') !== "0") {
         // punch.style.opacity = "1";
         punch.style.pointerEvents = "auto";
         punch.style.backgroundColor = "#FCFCFD";
@@ -187,7 +186,7 @@ function moveCountCheck(){
         punch.style.backgroundColor = "#9c9c9c";
         punch.style.boxShadow = " rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #494848 0 -3px 0 inset";
     }
-    if (window.sessionStorage.getItem('UltimateCount') !== "0") {
+    if (window.sessionStorage.getItem('SpecialCount2') !== "0") {
         // ultimate.style.opacity = "1";
         ultimate.style.pointerEvents = "auto";
         ultimate.style.backgroundColor = "#FCFCFD";
@@ -210,30 +209,30 @@ function rewardChance(){
 
     let rand = Math.random();
     if (rand < 0.1) {
-        if (Number(window.sessionStorage.getItem('SpecialCount')) < 4) {
-            window.sessionStorage.setItem('SpecialCount', String(Number(window.sessionStorage.getItem('SpecialCount')) + 1))
-            document.getElementById("special-counter").innerHTML = window.sessionStorage.getItem('SpecialCount');
+        if (Number(window.sessionStorage.getItem('SpecialCount1')) < 4) {
+            window.sessionStorage.setItem('SpecialCount1', String(Number(window.sessionStorage.getItem('SpecialCount1')) + 1))
+            document.getElementById("special-counter1").innerHTML = window.sessionStorage.getItem('SpecialCount1');
 
-            ResultUpdate.innerHTML = `You Were Very Lucky And Received Extra Shikai Move`
+            ResultUpdate.innerHTML = `You Were Very Lucky And Received Extra Shunkō Move`
             ResultUpdate.style.fontSize = "15px";
             ResultUpdate.style.fontWeight = "bold";
             gameLog[0].insertBefore(ResultUpdate, gameLog[0].firstChild);
         }
     }
     else if ((rand > 0.1) && (rand < 0.2)) {
-        window.sessionStorage.setItem('OPMCount', String(Number(window.sessionStorage.getItem('OPMCount')) + 1))
-        document.getElementById("opm-counter").innerHTML = window.sessionStorage.getItem('OPMCount');
+        window.sessionStorage.setItem('SpecialCount3', String(Number(window.sessionStorage.getItem('SpecialCount3')) + 1))
+        document.getElementById("special-counter3").innerHTML = window.sessionStorage.getItem('SpecialCount3');
 
-        ResultUpdate.innerHTML = `You Were Incredibly Lucky And Received The Horn Of Salvation`
+        ResultUpdate.innerHTML = `You Were Incredibly Lucky And Received The Bankai Form`
         ResultUpdate.style.fontSize = "15px";
         ResultUpdate.style.fontWeight = "bold";
         gameLog[0].insertBefore(ResultUpdate, gameLog[0].firstChild);
     }
     else if ((rand > 0.2) && (rand < 0.3)) {
-        window.sessionStorage.setItem('UltimateCount', String(Number(window.sessionStorage.getItem('UltimateCount')) + 1))
-        document.getElementById("ultimate-counter").innerHTML = window.sessionStorage.getItem('UltimateCount');
+        window.sessionStorage.setItem('SpecialCount2', String(Number(window.sessionStorage.getItem('SpecialCount2')) + 1))
+        document.getElementById("special-counter2").innerHTML = window.sessionStorage.getItem('SpecialCount2');
 
-        ResultUpdate.innerHTML = `It's Your Luck Day You Received A Bankai Form Move`
+        ResultUpdate.innerHTML = `It's Your Luck Day You Received A Shikai Form Move`
         ResultUpdate.style.fontSize = "15px";
         ResultUpdate.style.fontWeight = "bold";
         gameLog[0].insertBefore(ResultUpdate, gameLog[0].firstChild);

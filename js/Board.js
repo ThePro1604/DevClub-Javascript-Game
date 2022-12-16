@@ -71,9 +71,9 @@ function gamePlay() {
         window.sessionStorage.setItem('attack', "10");
         window.sessionStorage.setItem('defence', "10");
         window.sessionStorage.setItem('GameLog', JSON.stringify([]));
-        window.sessionStorage.setItem('SpecialCount', "4");
-        window.sessionStorage.setItem('OPMCount', "0");
-        window.sessionStorage.setItem('UltimateCount', "0");
+        window.sessionStorage.setItem('SpecialCount1', "4");
+        window.sessionStorage.setItem('SpecialCount2', "0");
+        window.sessionStorage.setItem('SpecialCount3', "0");
 
         const storageAvatar = JSON.parse(window.sessionStorage.getItem("Avatar"));
 
@@ -88,7 +88,7 @@ function gamePlay() {
         // setting the end point
         window.sessionStorage.setItem('key', "Missing");
         let endCell = document.getElementById(`cell-25-25`);
-        endCell.style.backgroundImage= "url(" + '"' + "./assets/loot/door.png" + '"' + ")";
+        endCell.style.backgroundImage= "url(" + '"' + "./assets/ect/door.png" + '"' + ")";
         endCell.style.backgroundSize= "contain";
         endCell.style.backgroundRepeat= "no-repeat";
         endCell.style.backgroundPosition= "50% 50%";

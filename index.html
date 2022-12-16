@@ -3,14 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game On!</title>
-    <script src="Board.js"></script>
-    <script src="Loot.js"></script>
-    <script src="Monster.js"></script>
-    <script src="Player.js"></script>
+    <title>Arrancar's Invasion!</title>
+    <script src="js/Board.js"></script>
+    <script src="js/Loot.js"></script>
+    <script src="js/Monster.js"></script>
+    <script src="js/Player.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="components/dialog/modalbox.css">
     <script src="components/dialog/modalbox.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/ect/bleach_icon.png">
 
     <link rel="stylesheet" href="components/dialog-fight/modalboxfight.css">
     <script src="components/dialog-fight/modalboxfight.js"></script>
@@ -18,7 +19,7 @@
 </head>
 <body onload="popupModal()">
     <div class="info">
-        <img src="./assets/bleach_title.png" alt="Bleach Title" width="100%" height="auto">
+        <img src="assets/ect/bleach_title.png" alt="Bleach Title" width="100%" height="auto">
         <table class="player-stats">
             <tr>
                 <td><h3>Health</h3></td>
@@ -48,20 +49,20 @@
                     <h3>Choose Your Shinigami!</h3>
                     <table class="character-table">
                         <tr>
-                            <td><img alt="avatar1" onclick="chooseAvatar(`avatar1`)" id="avatar1" src="assets/avatars/avatar1.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar2" onclick="chooseAvatar(`avatar2`)" id="avatar2" src="assets/avatars/avatar2.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar3" onclick="chooseAvatar(`avatar3`)" id="avatar3" src="assets/avatars/avatar3.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar4" onclick="chooseAvatar(`avatar4`)" id="avatar4" src="assets/avatars/avatar4.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar5" onclick="chooseAvatar(`avatar5`)" id="avatar5" src="assets/avatars/avatar5.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar6" onclick="chooseAvatar(`avatar6`)" id="avatar6" src="assets/avatars/avatar6.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar1" onclick="chooseAvatar(`avatar1`)" id="avatar1" class="avatars" src="assets/avatars/avatar1.png" /></td>
+                            <td><img alt="avatar2" onclick="chooseAvatar(`avatar2`)" id="avatar2" class="avatars" src="assets/avatars/avatar2.png" /></td>
+                            <td><img alt="avatar3" onclick="chooseAvatar(`avatar3`)" id="avatar3" class="avatars" src="assets/avatars/avatar3.png" /></td>
+                            <td><img alt="avatar4" onclick="chooseAvatar(`avatar4`)" id="avatar4" class="avatars" src="assets/avatars/avatar4.png" /></td>
+                            <td><img alt="avatar5" onclick="chooseAvatar(`avatar5`)" id="avatar5" class="avatars" src="assets/avatars/avatar5.png" /></td>
+                            <td><img alt="avatar6" onclick="chooseAvatar(`avatar6`)" id="avatar6" class="avatars" src="assets/avatars/avatar6.png" /></td>
                         </tr>
                         <tr>
-                            <td><img alt="avatar7" onclick="chooseAvatar(`avatar7`)" id="avatar7" src="assets/avatars/avatar7.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar8" onclick="chooseAvatar(`avatar8`)" id="avatar8" src="assets/avatars/avatar8.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar9" onclick="chooseAvatar(`avatar9`)" id="avatar9" src="assets/avatars/avatar9.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar10" onclick="chooseAvatar(`avatar10`)" id="avatar10" src="assets/avatars/avatar10.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar11" onclick="chooseAvatar(`avatar11`)" id="avatar11" src="assets/avatars/avatar11.png" width="auto" height="100px"/></td>
-                            <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" src="assets/avatars/avatar12.png" width="auto" height="100px"/></td>
+                            <td><img alt="avatar7" onclick="chooseAvatar(`avatar7`)" id="avatar7" class="avatars" src="assets/avatars/avatar7.png" /></td>
+                            <td><img alt="avatar8" onclick="chooseAvatar(`avatar8`)" id="avatar8" class="avatars" src="assets/avatars/avatar8.png" /></td>
+                            <td><img alt="avatar9" onclick="chooseAvatar(`avatar9`)" id="avatar9" class="avatars" src="assets/avatars/avatar9.png" /></td>
+                            <td><img alt="avatar10" onclick="chooseAvatar(`avatar10`)" id="avatar10" class="avatars" src="assets/avatars/avatar10.png" /></td>
+                            <td><img alt="avatar11" onclick="chooseAvatar(`avatar11`)" id="avatar11" class="avatars" src="assets/avatars/avatar11.png" /></td>
+                            <td><img alt="avatar12" onclick="chooseAvatar(`avatar12`)" id="avatar12" class="avatars" src="assets/avatars/avatar12.png" /></td>
                         </tr>
                     </table>
                     <div>
@@ -106,11 +107,11 @@
                     <table class="fight-updates">
                         <tr>
                             <td><button onclick="battleManager(1)" id="attack-one" class="attack">Base Zanpakutō (Infinite)</button></td>
-                            <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Shikai Form (<span id="special-counter" >4</span>/4)</button></td>
+                            <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Shunkō Power (<span id="special-counter1" >4</span>/4)</button></td>
                         </tr>
                         <tr>
-                            <td><button onclick="battleManager(3)" id="attack-three" class="attack">x3 Bankai Form (<span id="ultimate-counter" >0</span>)</button></td>
-                            <td><button onclick="battleManager(4)" id="attack-four" class="attack">Horn Of Salvation (<span id="opm-counter" >0</span>)</button></td>
+                            <td><button onclick="battleManager(3)" id="attack-three" class="attack">x3 Shikai Form (<span id="special-counter2" >0</span>)</button></td>
+                            <td><button onclick="battleManager(4)" id="attack-four" class="attack">x10 Bankai Form (<span id="special-counter3" >0</span>)</button></td>
                         </tr>
                     </table>
                 </div>

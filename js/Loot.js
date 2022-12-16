@@ -15,7 +15,7 @@ function lootGenerator(loots) {
     for (let cell of loots){
         const passive = document.getElementById(cell);
         passive.setAttribute("class", cell+"-loot");
-        passive.style.backgroundImage = "url(" + '"' + "./assets/flooring/Qmark.png" + '"' + ")";
+        passive.style.backgroundImage = "url(" + '"' + "./assets/ect/Qmark.png" + '"' + ")";
         passive.style.backgroundSize= "contain";
         passive.style.backgroundRepeat= "no-repeat";
         passive.style.backgroundPosition= "50% 50%";
@@ -97,10 +97,10 @@ function recoverLoot(previous) {
         previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/potion2.png" + '"' + ")";
     }
     if ((previousCell.className).includes("key")) {
-        previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/key.png" + '"' + ")";
+        previousCell.style.backgroundImage = "url(" + '"' + "./assets/ect/key.png" + '"' + ")";
     }
     if ((previousCell.className).includes("door")) {
-        previousCell.style.backgroundImage = "url(" + '"' + "./assets/loot/door.png" + '"' + ")";
+        previousCell.style.backgroundImage = "url(" + '"' + "./assets/ect/door.png" + '"' + ")";
     }
     if (isIncluded) {
         previousCell.style.backgroundSize = "contain";
@@ -116,7 +116,7 @@ function keysGenerator(keys){
     for (let cell of keys){
         let key = document.getElementById(cell);
         key.setAttribute("class", cell+"-key");
-        key.style.backgroundImage = "url(" + '"' + "./assets/flooring/Qmark.png" + '"' + ")";
+        key.style.backgroundImage = "url(" + '"' + "./assets/ect/Qmark.png" + '"' + ")";
         key.style.backgroundSize= "contain";
         key.style.backgroundRepeat= "no-repeat";
         key.style.backgroundPosition= "50% 50%";
@@ -159,7 +159,7 @@ function keyData(previous, current) {
     //if the cell is not a door handles a key cell
     else {
         currentCell.setAttribute("class", "used-key");
-        currentCell.style.backgroundImage = "url(" + '"' + "./assets/loot/key.png" + '"' + ")";
+        currentCell.style.backgroundImage = "url(" + '"' + "./assets/ect/key.png" + '"' + ")";
         window.sessionStorage.setItem('key', "Found");
         document.getElementById("player-keys").innerHTML = window.sessionStorage.getItem('key');
         keyUpdate = document.createElement("p");

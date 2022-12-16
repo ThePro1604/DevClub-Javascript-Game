@@ -1,5 +1,5 @@
 #myGameBoard {
-    width: 70%;
+    width: 67%;
     height: 100%;
     text-align:center;
     table-layout:fixed;
@@ -24,8 +24,8 @@
 .info {
     top: 0; right: 0; bottom: 0;
     position: absolute;
-    left: 70%;
-    width: 26%;
+    left: 67%;
+    width: 28%;
     height: 95%;
     display: inline-block;
     padding-inline: 2%;
@@ -36,3 +36,13 @@
     font-family: 'Fantasy', 'Papyrus';
 }
 
+.avatars {
+    width: auto;
+    height: 100px;
+}
+
+.avatars:hover {
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+}
