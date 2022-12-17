@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Arrancar's Invasion!</title>
+  <link rel="icon" type="image/x-icon" href="assets/ect/bleach_icon.png">
+  <script src="js/BossFight.js"></script>
+  <link rel="stylesheet" href="boss.css">
+
+</head>
+<body>
+
+<div class="boss-container">
+  <div class="heath-bars">test</div>
+  <div class="battle-zone">
+    <table class="attack-buttons">
+      <tr>
+        <td><img class="player" src="assets/avatars/avatar1.png" height="200px" width="auto"></td>
+        <td><div class="battle-updates"></div></td>
+        <td><img class="boss" src="assets/monsters/monster5.png" height="200px" width="auto"></td>
+      </tr>
+    </table>
+  </div>
+  <div class="attacks">
+    <table class="attack-buttons">
+      <tr>
+        <td><button onclick="battleManager(1)" id="attack-one" class="attack">Base Zanpakutō (Infinite)</button></td>
+        <td><button onclick="battleManager(2)" id="attack-two" class="attack">x2 Shunkō Power (<span id="special-counter1" >4</span>/4)</button></td>
+        <td><button onclick="battleManager(3)" id="attack-three" class="attack">x3 Shikai Form (<span id="special-counter2" >0</span>)</button></td>
+        <td><button onclick="battleManager(4)" id="attack-four" class="attack">x10 Bankai Form (<span id="special-counter3" >0</span>)</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
