@@ -8,16 +8,32 @@
   <link rel="stylesheet" href="boss.css">
 
 </head>
-<body>
+<body onload="monsterData()">
 
 <div class="boss-container">
-  <div class="heath-bars">test</div>
+<!--  <div class="heath-bars">test</div>-->
+  <div class="health-container">
+    <div class="l-split__item" id="l-split">
+      <div class="healthbar">
+        <div class="healthbar__meter healthbar__meter--player-one" id="healthbar__meter--player-one" style="width: 0;"></div>
+      </div>
+    </div>
+    <div class="l-split__item l-split__item--small">
+      <div class="ko">KO</div>
+    </div>
+    <div class="l-split__item" id="r-split">
+      <div class="healthbar">
+        <div class="healthbar__meter healthbar__meter--player-two" id="healthbar__meter--player-two" style="width: 0;"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="battle-zone">
     <table class="attack-buttons">
       <tr>
-        <td><img class="player" src="assets/avatars/avatar1.png" height="200px" width="auto"></td>
-        <td><div class="battle-updates"></div></td>
-        <td><img class="boss" src="assets/monsters/monster5.png" height="200px" width="auto"></td>
+        <td><img alt="player avatar" id="player" height="200px" width="auto"></td>
+        <td><div class="battle-updates"><p id="messages">Begin Battle</p></div></td>
+        <td><img alt="boss avatar" id="boss" src="assets/monsters/monster5.png" height="200px" width="auto"></td>
       </tr>
     </table>
   </div>

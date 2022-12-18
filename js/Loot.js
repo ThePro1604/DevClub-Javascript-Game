@@ -143,8 +143,15 @@ function keyData(previous, current) {
             window.sessionStorage.removeItem("tableData");
             window.sessionStorage.setItem("inDoor", "True")
             setTimeout(function(){
-                window.sessionStorage.clear();
-                location.reload();
+                // window.sessionStorage.clear();
+                // location.reload();
+                window.sessionStorage.setItem('MonsterHealth', String(250));
+                window.sessionStorage.setItem("maxPlayerHealth", window.sessionStorage.getItem("health"));
+                window.sessionStorage.setItem("maxBossHealth", window.sessionStorage.getItem("MonsterHealth"));
+                window.sessionStorage.setItem('ProgressPlayer', String(0));
+                window.sessionStorage.setItem('ProgressBoss', String(0));
+
+                window.location = "/javascript-game/boss.html"
             }, 4000)
         }
         // if the player missing a key returns a message in the game log

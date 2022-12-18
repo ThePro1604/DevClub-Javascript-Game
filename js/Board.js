@@ -66,7 +66,7 @@ function gamePlay() {
         keysGenerator(keys)
 
         // setting the stats in the SessionStorage for future pulls
-        window.sessionStorage.setItem('key', "Missing");
+        window.sessionStorage.setItem('key', "Found");
         window.sessionStorage.setItem('health', "100");
         window.sessionStorage.setItem('attack', "10");
         window.sessionStorage.setItem('defence', "10");
@@ -86,7 +86,6 @@ function gamePlay() {
         window.sessionStorage.setItem('AvatarC', storageAvatar[0].img);
 
         // setting the end point
-        window.sessionStorage.setItem('key', "Missing");
         let endCell = document.getElementById(`cell-25-25`);
         endCell.style.backgroundImage= "url(" + '"' + "./assets/ect/door.png" + '"' + ")";
         endCell.style.backgroundSize= "contain";
