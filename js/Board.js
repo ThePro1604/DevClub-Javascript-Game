@@ -66,7 +66,7 @@ function gamePlay() {
         keysGenerator(keys)
 
         // setting the stats in the SessionStorage for future pulls
-        window.sessionStorage.setItem('key', "Found");
+        window.sessionStorage.setItem('key', "Missing");
         window.sessionStorage.setItem('health', "100");
         window.sessionStorage.setItem('attack', "10");
         window.sessionStorage.setItem('defence', "10");
