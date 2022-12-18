@@ -9,7 +9,6 @@ const monsterList = [
 const monsterListDead = [
     "./assets/monsters/monster_dead1.png",
     "./assets/monsters/monster_dead2.png",
-    "./assets/monsters/monster_dead3.png",
     "./assets/monsters/monster_dead4.png",
     "./assets/monsters/monster_dead5.png",
 ];
