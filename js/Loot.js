@@ -135,7 +135,7 @@ function keyData(previous, current) {
         // checks if the player already found a key (enters if he does and win) and resets the game
         if (window.sessionStorage.getItem('key') === "Found"){
             endDoor = document.createElement("p");
-            endDoor.innerHTML = `You Have Won The Game`;
+            endDoor.innerHTML = `You Are being Teleported To The Boss`;
             endDoor.style.fontSize = "15px";
             endDoor.style.fontWeight = "bold";
             gameLog[0].insertBefore(endDoor, gameLog[0].firstChild);
@@ -151,7 +151,7 @@ function keyData(previous, current) {
                 window.sessionStorage.setItem('ProgressPlayer', String(0));
                 window.sessionStorage.setItem('ProgressBoss', String(0));
 
-                window.location = "/javascript-game/boss.html"
+                window.location = "./boss.html"
             }, 4000)
         }
         // if the player missing a key returns a message in the game log

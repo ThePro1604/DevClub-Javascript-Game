@@ -246,7 +246,7 @@ function playerLost() {
 
     setTimeout(function () {
         window.sessionStorage.clear();
-        window.location = "/javascript-game/index.html"
+        window.location = "./index.html"
     }, 3000)
 }
 
@@ -256,7 +256,7 @@ function monsterLost() {
     fightUpdates.innerHTML = `You Won!`;
     setTimeout(function () {
         window.sessionStorage.clear();
-        window.location = "/javascript-game/index.html"
+        window.location = "./index.html"
     }, 3000)
     window.sessionStorage.removeItem("MonsterHealth");
 }
