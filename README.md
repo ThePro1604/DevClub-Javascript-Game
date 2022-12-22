@@ -7,7 +7,6 @@ The purpose of the game is finding keys and reaching the door.
 During the game in order to win you will have to fight random monsters across the board and finding potions to increase your stats.  
 Don't think you can escape without fighting you need a key in order to leave!
 
-**The Full Game is under the Complete Branch**  
 Some Screenshots from the game  
   
 ## The Start Screen:  (Screenshots OutDated)
