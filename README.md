@@ -1,5 +1,5 @@
 
-# DevClub-Javascript-Game
+# The Arrancars Invasion
 
 Online board game built with JavaScript, Html and CSS.
 The purpose of the game is finding keys and reaching the door.
@@ -10,7 +10,7 @@ Don't think you can escape without fighting you need a key in order to leave!
 **The Full Game is under the Complete Branch**  
 Some Screenshots from the game  
   
-## The Start Screen:  
+## The Start Screen:  (Screenshots OutDated)
 ![Alt text](https://github.com/ThePro1604/DevClub-Javascript-Game/blob/Complete/README/Characters.png?raw=true "Title") 
   
 ## The Game Board:  
